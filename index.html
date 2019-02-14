@@ -18,7 +18,7 @@
         <div class="product">
 
             <div class="product-image">
-                <a :href="img_src">
+                <a :href="img_src" target="_blank">
                     <img v-bind:src="image">
                 </a>
             </div>
@@ -37,7 +37,11 @@
                 </ul>
 
                 <div v-for="variant in variants" :key="variant.variantId">
-                    <p>{{ variant.variantColor }}</p>
+                    <!-- v-on:mouseover can be used instead -->
+                    <p @mouseover="updateProduct(variant.variantImage, 
+                    variant.variantSource)">
+                    {{ variant.variantColor }}
+                </p>
                 </div>
 
                 <div>
@@ -45,6 +49,14 @@
                     <ul>
                         <li v-for="size in sizes">{{ size.sizeName }}</li>
                     </ul>
+                </div>
+
+                <button v-on:click="addToCart">Add to Cart</button>
+
+                <button v-on:click="removeFromCart">Remove from Cart</button>
+
+                <div class="cart">
+                    <p>Cart ({{cart}})</p>
                 </div>
 
             </div>
