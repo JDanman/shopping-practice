@@ -25,13 +25,11 @@
 
             <div class="product-info">
                 <h1>{{ product }}</h1>
-                <!--
-                    <p v-show="inventory > 0">In Stock</p>
-                        Just toggles the element on/off.
-                        Is better on the performance side
-                -->
-                <p v-if="inventory > 10">In Stock</p>
-                <p v-else-if="inventory <= 10 && inventory > 0">Almost Sold out</p>
+
+                <h3 v-show="onSale">On Sale!</h3>
+                
+                <p v-if="inventory > 10" v-show="!onSale">In Stock</p>
+                <p v-else-if="inventory <= 10 && inventory > 0">Almost Sold out!</p>
                 <p v-else>Out of Stock</p>
             </div>
 
